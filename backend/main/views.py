@@ -1,10 +1,10 @@
+from rest_framework import mixins
 from rest_framework.filters import SearchFilter
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authtoken import views
+from rest_framework.response import Response
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
-from rest_framework.mixins import RetrieveModelMixin, UpdateModelMixin, DestroyModelMixin, \
-    ListModelMixin, CreateModelMixin
 from django.contrib.auth import get_user_model
 from drf_yasg.utils import swagger_auto_schema
 
@@ -12,14 +12,14 @@ from .serializers import UserProfileSerializer, UsersSerializer, RegisterUserSer
 from .yasg import AuthSwaggerSerializer, auth_swagger_schema
 
 
-class UserRegistration(GenericViewSet, CreateModelMixin):
+class UserRegistration(GenericViewSet, mixins.CreateModelMixin):
     serializer_class = RegisterUserSerializer
 
     def post(self, request):
         return self.create(request)
 
 
-class UserProfile(GenericViewSet, UpdateModelMixin, RetrieveModelMixin, DestroyModelMixin):
+class UserProfile(GenericViewSet, mixins.UpdateModelMixin, mixins.DestroyModelMixin):
     permission_classes = [IsAuthenticated]
     authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
     serializer_class = UserProfileSerializer
@@ -28,8 +28,13 @@ class UserProfile(GenericViewSet, UpdateModelMixin, RetrieveModelMixin, DestroyM
     def get_object(self):
         return self.request.user
 
+    def list(self, request, *args, **kwargs):
+        instance = self.get_object()
+        serializer = self.get_serializer(instance)
+        return Response(serializer.data)
 
-class GetUsersList(GenericViewSet, ListModelMixin):
+
+class GetUsersList(GenericViewSet, mixins.ListModelMixin):
     permission_classes = [IsAuthenticated]
     authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
     serializer_class = UsersSerializer
