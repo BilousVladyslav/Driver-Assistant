@@ -1,18 +1,59 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgModule, APP_INITIALIZER } from '@angular/core';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
+import {
+  L10nConfig,
+  L10nLoader,
+  L10nTranslationModule,
+  L10nIntlModule
+} from 'angular-l10n';
+import { l10nConfig, initL10n } from './l10n/l10n-config';
+
+import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
+import { MaterialModule } from './shared/modules/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { FooterComponent } from './shared/components/footer/footer.component';
+import { NavigationComponent } from './shared/components/navigation/navigation.component';
+import { LoginComponent } from './shared/components/login/login.component';
+import { RegistrationComponent } from './components/registration/registration.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FooterComponent,
+    NavigationComponent,
+    LoginComponent,
+    RegistrationComponent,
+    HomePageComponent,
+    UserProfileComponent,
   ],
   imports: [
+    L10nTranslationModule.forRoot(l10nConfig),
+    L10nIntlModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    BrowserAnimationsModule,
+    MaterialModule,
+    ReactiveFormsModule,
+    FormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: APP_INITIALIZER,
+      useFactory: initL10n,
+      deps: [L10nLoader],
+      multi: true
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
