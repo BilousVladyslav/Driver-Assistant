@@ -19,3 +19,6 @@ djangorestframework-api-key==2.0.0
 # For testing
 flake8==3.8.4
 coverage==5.3
+
+# Admin panel
+jet-django

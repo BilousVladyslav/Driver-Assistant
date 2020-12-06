@@ -7,6 +7,8 @@ from .yasg import urlpatterns as swagger_url
 
 urlpatterns = [
     path('', include('main.urls')),
+    path('', include('user_cars.urls')),
+    path('jet_api/', include('jet_django.urls')),
     path('admin/', admin.site.urls),
     path('api/', include('rest_framework.urls')),
 
