@@ -2,7 +2,6 @@ from django.contrib.auth import get_user_model
 
 from rest_framework import serializers
 from rest_framework.validators import UniqueValidator
-from drf_yasg.utils import swagger_serializer_method
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -11,18 +10,6 @@ class UserProfileSerializer(serializers.ModelSerializer):
         model = get_user_model()
         fields = ['email', 'username', 'first_name', 'last_name']
         read_only_fields = ['username', 'email']
-
-
-class UsersSerializer(serializers.ModelSerializer):
-    full_name = serializers.SerializerMethodField()
-
-    class Meta:
-        model = get_user_model()
-        fields = ['username', 'full_name']
-
-    @swagger_serializer_method(serializer_or_field=serializers.CharField)
-    def get_full_name(self, obj) -> str:
-        return f'{obj.first_name} {obj.last_name}'
 
 
 class RegisterUserSerializer(serializers.ModelSerializer):

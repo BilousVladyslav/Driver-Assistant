@@ -9,7 +9,6 @@ from . import views
 router = DefaultRouter()
 router.register('api/register', views.UserRegistration, basename='register')
 router.register('api/profile', views.UserProfile, basename='profile')
-router.register('api/profiles', views.GetUsersList, basename='users')
 
 
 urlpatterns = [
