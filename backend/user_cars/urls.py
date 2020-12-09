@@ -5,7 +5,9 @@ from . import views
 
 
 router = DefaultRouter()
-router.register('api/cars', views.CarViewSet, basename='cars')
+router.register('api/my-cars', views.MyCarViewSet, basename='my-cars')
+router.register('api/all-cars', views.CarViewSet, basename='all-cars')
+router.register('api/coordinates', views.CoordinatesViewSet, basename='coordinates')
 
 
 urlpatterns = [

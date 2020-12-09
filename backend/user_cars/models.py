@@ -3,8 +3,6 @@ from django.dispatch import receiver
 from django.db.models.signals import post_save
 from django.contrib.auth import get_user_model
 
-from . import managers
-
 
 class Coordinates(models.Model):
     latitude = models.FloatField(blank=False, null=False)
@@ -17,6 +15,9 @@ class Car(models.Model):
     number = models.CharField(max_length=10, blank=True)
     is_special = models.BooleanField(default=False, blank=False)
     coordinates = models.OneToOneField(Coordinates, on_delete=models.CASCADE, blank=True, null=True)
+
+    def position(self) -> str:
+        return f'{self.coordinates.latitude} - {self.coordinates.longitude}'
 
 
 @receiver(post_save, sender=Car)
