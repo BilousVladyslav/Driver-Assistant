@@ -99,7 +99,7 @@ class CoordinatesViewSet(viewsets.GenericViewSet, mixins.UpdateModelMixin):
     
     def partial_update(self, request, *args, **kwargs):
         """
-        API for retrieving list of user cars.
+        API for partial updating car coordinates.
 
             .
         """
