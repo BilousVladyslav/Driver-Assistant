@@ -2,6 +2,7 @@ from django.db.models.query import Q
 from rest_framework import viewsets
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
 
 from . import serializers
 from .models import Car
@@ -10,6 +11,7 @@ from .models import Car
 class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.CreateModelMixin,
                    mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin):
     serializer_class = serializers.CarSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -66,6 +68,7 @@ class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Cr
 
 class CarViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = serializers.CarSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -82,6 +85,7 @@ class CarViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 
 class CoordinatesViewSet(viewsets.GenericViewSet, mixins.UpdateModelMixin):
     serializer_class = serializers.CoordinatesSerializer
+    authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Car.objects.all()
 
