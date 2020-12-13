@@ -43,9 +43,58 @@
         </mat-form-field>
 
         <div style="width: 60%" class='mx-auto'>
-          <button mat-raised-button color="accent" [disabled]="userProfileForm.invalid" class="p-2 w-100">{{ 'profile.save' | translate:locale.language }}</button>
+          <button mat-raised-button color="primary" [disabled]="userProfileForm.invalid" class="p-2 w-100">{{ 'profile.save' | translate:locale.language }}</button>
         </div>
       </form>
+    </section>
+
+  </mat-tab>
+
+  <mat-tab label="{{ 'user_cars.title' | translate:locale.language }}">
+    <section class="container  py-3">
+      <div *ngIf="carsFormGroup" [formGroup]="carsFormGroup" class="mb-4">
+        <div formArrayName="cars"
+            *ngFor="let car of carsFormGroup.get('cars').controls; let i = index;">
+
+          <mat-card class="mx-3 my-4" [formGroupName]="i">
+            <mat-card-content class="input_container">
+
+              <mat-form-field class="basic_input">
+                <input matInput formControlName="name" placeholder="{{ 'user_cars.car_card.name_title' | translate:locale.language }}">
+                <mat-error *ngIf="car.controls.name.errors && (car.controls.name.dirty || car.controls.name.touched)">
+                  <mat-error *ngIf="car.controls.name.errors.required" class="error-message">
+                    * {{ 'user_cars.car_card.name_required' | translate:locale.language }}
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-form-field class="basic_input">
+                <input matInput formControlName="number" placeholder="{{ 'user_cars.car_card.number_title' | translate:locale.language }}">
+                <mat-error *ngIf="car.controls.number.errors && (car.controls.number.dirty || car.controls.number.touched)">
+                  <mat-error *ngIf="car.controls.number.errors.required" class="error-message">
+                    * {{ 'user_cars.car_card.number_required' | translate:locale.language }}
+                  </mat-error>
+                  <mat-error *ngIf="car.controls.number.errors.maxlength" class="error-message">
+                    * {{ 'user_cars.car_card.number_max_length' | translate:locale.language }}
+                  </mat-error>
+                </mat-error>
+              </mat-form-field>
+
+              <mat-chip-list *ngIf="car.get('is_special').value" aria-label="Special status">
+                <mat-chip color="warn" selected>{{ 'user_cars.car_card.is_special' | translate:locale.language }}</mat-chip>
+              </mat-chip-list>
+
+            </mat-card-content>
+            <mat-card-actions>
+              <button mat-raised-button color="warn" (click)="deleteCar(i)">{{ 'user_cars.car_card.delete' | translate:locale.language }} </button>
+            </mat-card-actions>
+          </mat-card>
+        </div>
+        <button mat-raised-button color="primary" (click)="addCar()"> {{ 'user_cars.add' | translate:locale.language }} </button>
+      </div>
+      <mat-divider class="my-3"></mat-divider>
+      <button *ngIf="carsFormGroup" mat-raised-button color="primary" (click)="onSubmitCars()" [disabled]="carsFormGroup.status === 'INVALID'" class="w-100">{{ 'user_cars.save' | translate:locale.language }}</button>
+
     </section>
 
   </mat-tab>

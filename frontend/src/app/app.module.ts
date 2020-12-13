@@ -16,6 +16,7 @@ import { MaterialModule } from './shared/modules/material.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { AgmCoreModule } from '@agm/core';
 
 import { FooterComponent } from './shared/components/footer/footer.component';
 import { NavigationComponent } from './shared/components/navigation/navigation.component';
@@ -23,6 +24,8 @@ import { LoginComponent } from './shared/components/login/login.component';
 import { RegistrationComponent } from './components/registration/registration.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
+import { CarsMapComponent } from './components/cars-map/cars-map.component';
+import { environment } from '../environments/environment';
 
 @NgModule({
   declarations: [
@@ -33,6 +36,7 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     RegistrationComponent,
     HomePageComponent,
     UserProfileComponent,
+    CarsMapComponent,
   ],
   imports: [
     L10nTranslationModule.forRoot(l10nConfig),
@@ -44,6 +48,9 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
     ReactiveFormsModule,
     FormsModule,
     HttpClientModule,
+    AgmCoreModule.forRoot({
+      apiKey: environment.apiKey
+    })
   ],
   providers: [
     {
