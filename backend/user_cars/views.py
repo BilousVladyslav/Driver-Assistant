@@ -3,10 +3,11 @@ from rest_framework import viewsets
 from rest_framework import mixins
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.authentication import SessionAuthentication, BasicAuthentication, TokenAuthentication
+from drf_yasg.utils import swagger_auto_schema
 
 from . import serializers
 from .models import Car
-
+from .yasg import CarSwaggerSerializer, car_swagger_schema
 
 class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.CreateModelMixin,
                    mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin):
@@ -33,6 +34,7 @@ class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Cr
         """
         return super(MyCarViewSet, self).retrieve(request, *args, **kwargs)
 
+    @swagger_auto_schema(request_body=CarSwaggerSerializer(), responses=car_swagger_schema)
     def create(self, request, *args, **kwargs):
         """
         API for creating record about car.
@@ -69,10 +71,12 @@ class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Cr
 class CarViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
     serializer_class = serializers.CarSerializer
     authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
-    permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
-        return Car.objects.filter(Q(owner=self.request.user) | Q(is_special=True))
+        if self.request.user.is_anonymous:
+            return Car.objects.filter(is_special=True)
+        else:
+            return Car.objects.filter(Q(owner=self.request.user) | Q(is_special=True))
     
     def list(self, request, *args, **kwargs):
         """
