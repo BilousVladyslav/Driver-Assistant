@@ -7,7 +7,8 @@ from drf_yasg.utils import swagger_auto_schema
 
 from . import serializers
 from .models import Car
-from .yasg import CarSwaggerSerializer, car_swagger_schema
+from .yasg import CarSwaggerSerializer, car_swagger_schema, car_edit_swagger_schema
+
 
 class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.CreateModelMixin,
                    mixins.DestroyModelMixin, mixins.UpdateModelMixin, mixins.ListModelMixin):
@@ -50,7 +51,8 @@ class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Cr
             .
         """
         return super(MyCarViewSet, self).destroy(request, *args, **kwargs)
-    
+
+    @swagger_auto_schema(request_body=CarSwaggerSerializer(), responses=car_edit_swagger_schema)
     def update(self, request, *args, **kwargs):
         """
         API for updating data about user car.
@@ -58,7 +60,8 @@ class MyCarViewSet(viewsets.GenericViewSet, mixins.RetrieveModelMixin, mixins.Cr
             .
         """
         return super(MyCarViewSet, self).update(request, *args, **kwargs)
-    
+
+    @swagger_auto_schema(request_body=CarSwaggerSerializer(), responses=car_edit_swagger_schema)
     def partial_update(self, request, *args, **kwargs):
         """
         API for partial updating data about user car.

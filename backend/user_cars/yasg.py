@@ -15,3 +15,11 @@ car_swagger_schema = {
         schema=CarSerializer()
     ),
 }
+
+
+car_edit_swagger_schema = {
+    "200": openapi.Response(
+        description="Successful car updating.",
+        schema=CarSerializer()
+    ),
+}
