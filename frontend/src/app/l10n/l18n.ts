@@ -31,7 +31,8 @@ export const i18nAsset = {
     navbar: {
       logout: 'Log out',
       profile: 'Profile',
-      home: 'Home'
+      home: 'Home',
+      cars: 'Cars'
     },
     register: {
       title: 'New user registration',
@@ -102,6 +103,24 @@ export const i18nAsset = {
       },
       save: 'Save changes'
     },
+    cars: {
+      title: 'Cars positions',
+      details: 'Here you can see all special cars and your cars (if you are logged in).'
+    },
+    user_cars: {
+      title: 'My cars',
+      car_card: {
+        name_title: 'Car name',
+        name_required: 'Car name is a required',
+        number_title: 'Car number',
+        number_required: 'Car number is a required',
+        number_max_length: 'Car number max length - 10 symbols',
+        is_special: 'Special transport',
+        delete: 'Delete car'
+      },
+      add: 'Add car',
+      save: 'Save'
+    }
   },
   'uk-UA': {
     changeLocale: 'Змінити мову',
@@ -179,7 +198,8 @@ export const i18nAsset = {
     navbar: {
       logout: 'Вийти',
       profile: 'Профіль',
-      home: 'Головна'
+      home: 'Головна',
+      cars: 'Автомобілі'
     },
     profile: {
       title: 'Персональна інформація',
@@ -206,5 +226,23 @@ export const i18nAsset = {
       },
       save: 'Зберегти зміни'
     },
+    cars: {
+      title: 'Автомобілі',
+      details: 'Тут ви можете побачити, де знаходиться спеціальний транспорт та ваші автомобілі (якщо ви авторизовані).'
+    },
+    user_cars: {
+      title: 'Мої автомобілі',
+      car_card: {
+        name_title: 'Назва автомобіля',
+        name_required: 'Назва автомобіля обов`язкова',
+        number_title: 'Номер автомобіля',
+        number_required: 'Номер автомобіля обов`язковий',
+        number_max_length: 'Максимальна довжина номера - 10 символів',
+        is_special: 'Спеціальний транспорт',
+        delete: 'Видалити автомобіль'
+      },
+      add: 'Додати автомобіль',
+      save: 'Зберегти'
+    }
   }
 };
