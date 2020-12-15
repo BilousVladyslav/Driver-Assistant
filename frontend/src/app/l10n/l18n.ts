@@ -120,6 +120,11 @@ export const i18nAsset = {
       },
       add: 'Add car',
       save: 'Save'
+    },
+    requests: {
+      title: 'Special transport requests',
+      accept: 'ACCEPT',
+      reject: 'REJECT'
     }
   },
   'uk-UA': {
@@ -243,6 +248,11 @@ export const i18nAsset = {
       },
       add: 'Додати автомобіль',
       save: 'Зберегти'
+    },
+    requests: {
+      title: 'Запити на сецыальний траспорт',
+      accept: 'ПРИЙНЯТИ',
+      reject: 'ВІДКИНУТИ'
     }
   }
 };
