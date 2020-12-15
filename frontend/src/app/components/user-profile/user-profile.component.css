@@ -31,3 +31,12 @@ flex-direction: column;
 margin-top: 5px;
 width: 70%;
 }
+
+.example-card {
+max-width: 400px;
+}
+
+.example-header-image {
+background-image: url('https://html5css.ru/w3css/img_avatar3.png');
+background-size: cover;
+}

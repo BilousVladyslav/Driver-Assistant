@@ -98,5 +98,56 @@
     </section>
 
   </mat-tab>
+
+  <mat-tab *ngIf="user.is_staff" label="{{ 'requests.title' | translate:locale.language }}">
+    <section class="container  py-3">
+      <div class="row justify-content-around">
+        <mat-card class="example-card col-5 m-2">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Fedor Lukianov</mat-card-title>
+            <mat-card-subtitle>Ford Focus</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://patrul.in.ua/wp-content/uploads/2018/04/dozv1-1.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>{{ 'requests.accept' | translate:locale.language }}</button>
+            <button mat-button>{{ 'requests.reject' | translate:locale.language }}</button>
+          </mat-card-actions>
+        </mat-card>
+        <mat-card class="example-card col-5 m-2">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Alexey Fedorov</mat-card-title>
+            <mat-card-subtitle>Dodge Challenger</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://patrul.in.ua/wp-content/uploads/2018/04/dozv1-1.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>{{ 'requests.accept' | translate:locale.language }}</button>
+            <button mat-button>{{ 'requests.reject' | translate:locale.language }}</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+      <div class="row justify-content-around">
+        <mat-card class="example-card col-5 m-2">
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>Maxim Alekseev</mat-card-title>
+            <mat-card-subtitle>Toyota Prado</mat-card-subtitle>
+          </mat-card-header>
+          <img mat-card-image src="https://patrul.in.ua/wp-content/uploads/2018/04/dozv1-1.jpg" alt="Photo of a Shiba Inu">
+          <mat-card-content>
+          </mat-card-content>
+          <mat-card-actions>
+            <button mat-button>{{ 'requests.accept' | translate:locale.language }}</button>
+            <button mat-button>{{ 'requests.reject' | translate:locale.language }}</button>
+          </mat-card-actions>
+        </mat-card>
+      </div>
+    </section>
+  </mat-tab>
  
 </mat-tab-group>
