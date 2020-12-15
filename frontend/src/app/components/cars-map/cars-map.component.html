@@ -1,0 +1,12 @@
+<div class="p-5">
+  
+  <h1 class="text-center p-2 m-0" style="font-weight: 500;">{{ 'cars.title' | translate :locale.language }}</h1>
+  
+  <h3 class="p-2 text-center" style="font-weight: 500;">{{ 'cars.details' | translate:locale.language }}</h3>
+
+  <agm-map [latitude]="lat" [longitude]="lng">
+    <agm-marker *ngFor="let car of cars" [latitude]="car.coordinates.latitude" [longitude]="car.coordinates.longitude">
+      <agm-info-window>{{car.name}}, {{car.number}}</agm-info-window>
+    </agm-marker>
+  </agm-map>
+</div>

@@ -1,8 +1,8 @@
-FROM  node:10-alpine
+FROM  node:14-alpine
 
-WORKDIR /usr/src/app/frontend
+WORKDIR /usr/src/frontend
 
-COPY . . 
+COPY ./frontend /usr/src/frontend/
 
 RUN npm install
 RUN npm install -g @angular/cli

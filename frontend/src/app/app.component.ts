@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
+import { L10N_LOCALE, L10nLocale } from 'angular-l10n';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +8,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'frontend';
+  title = 'Driver Assistant';
+
+  constructor(
+    @Inject(L10N_LOCALE) public locale: L10nLocale,
+    private router: Router,
+  ) { }
 }

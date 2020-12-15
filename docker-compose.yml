@@ -25,6 +25,42 @@ services:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
       - docker/env/db.env
+  iot:
+    build:
+      context: .
+      dockerfile: docker/iot/Dockerfile
+    entrypoint: /entrypoint.sh
+    volumes:
+      - ./iot/:/usr/src/iot/
+    env_file:
+      - docker/iot/1.env
+    depends_on:
+      - backend
+    restart: always
+  iot2:
+    build:
+      context: .
+      dockerfile: docker/iot/Dockerfile
+    entrypoint: /entrypoint.sh
+    volumes:
+      - ./iot/:/usr/src/iot/
+    env_file:
+      - docker/iot/2.env
+    depends_on:
+      - backend
+    restart: always
+  iot3:
+    build:
+      context: .
+      dockerfile: docker/iot/Dockerfile
+    entrypoint: /entrypoint.sh
+    volumes:
+      - ./iot/:/usr/src/iot/
+    env_file:
+      - docker/iot/3.env
+    depends_on:
+      - backend
+    restart: always
   redis:
     image: redis:6.0.1-alpine
     restart: always

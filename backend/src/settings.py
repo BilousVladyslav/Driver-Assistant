@@ -20,6 +20,9 @@ SUPER_USER_PASSWORD = os.environ.get('SUPER_USER_PASSWORD')
 
 MICROSERVICE_TITLE = os.environ.get('MICROSERVICE_TITLE')
 
+JET_PROJECT = 'driverassistant'
+JET_TOKEN = '1a15d06f-7bc1-473f-8d16-0dc6e376c433'
+
 INSTALLED_APPS = [
     'main.apps.MainConfig',
 
@@ -35,6 +38,9 @@ INSTALLED_APPS = [
     'rest_framework_api_key',
     'drf_yasg',
     'corsheaders',
+    'jet_django',
+
+    'user_cars'
 
 ]
 
