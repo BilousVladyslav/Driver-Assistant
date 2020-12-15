@@ -93,7 +93,7 @@ class CarViewSet(viewsets.GenericViewSet, mixins.ListModelMixin):
 class CoordinatesViewSet(viewsets.GenericViewSet, mixins.UpdateModelMixin):
     serializer_class = serializers.CoordinatesSerializer
     authentication_classes = [BasicAuthentication, SessionAuthentication, TokenAuthentication]
-    permission_classes = [IsAuthenticated]
+    # permission_classes = [IsAuthenticated]
     queryset = Car.objects.all()
 
     def get_object(self):
